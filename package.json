@@ -1,0 +1,18 @@
+{
+  "name": "httpmon",
+  "version": "1.0.0",
+  "description": "HTTPMon",
+  "author": "Alexander Ramm",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^11.2.1"
+  },
+  "dependencies": {
+  }
+}
