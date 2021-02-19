@@ -1,4 +1,7 @@
 var net = require("net");
+const Monitor = require("./modules/Monitor.js");
+let monitor = new Monitor();
+
 const { app, BrowserWindow } = require('electron')
 
 function createWindow() {
@@ -35,6 +38,17 @@ app.on('activate', () => {
 
 /** Proxy routine */
 
+monitor.setMonitor({ 
+  'id': 2,
+  'name': 'googlecom',
+  'type': 'tcp',
+  'active': true,
+  localPort: 9090,
+  remoteHost: '127.0.0.1',
+  remotePort: '3000',
+  destinationURL: ''
+ });
+
 var connectionSockets = [];
 var struct_connection = {
   name: '',
@@ -49,6 +63,7 @@ var struct_connection = {
   remoteSocket: null,
   server: null
 }
+
 
 var localport = 9090;
 var remotehost = 'localhost';
@@ -68,6 +83,15 @@ var server = net.createServer(function (localsocket) {
   remotesocket.connect(remoteport, remotehost);
 
   localsocket.on('connect', function (data) {
+    monitor.addRequest({
+      id: '1',
+      datetime: '',
+      remoteAddress: localSocket.remoteAddress,
+      remotePort: localSocket.remotePort,
+      remoteSocket: localSocket.remoteSocket,
+    });
+
+
     console.log(">>> connection #%d from %s:%d",
       server.connections,
       localsocket.remoteAddress,
@@ -76,6 +100,16 @@ var server = net.createServer(function (localsocket) {
   });
 
   localsocket.on('data', function (data) {
+
+    monitor.addData({
+      id: '1',
+      datetime: '',
+      remoteAddress: localsocket.remoteAddress,
+      remotePort: localsocket.remotePort,
+      remoteSocket: localsocket.remoteSocket,
+      request: data.toString('base64')
+    });
+
     console.trace('Input:' + data);
     console.log("%s:%d - writing data to remote",
       localsocket.remoteAddress,
@@ -89,6 +123,15 @@ var server = net.createServer(function (localsocket) {
   });
 
   remotesocket.on('data', function (data) {
+    monitor.addData({
+      id: '1',
+      datetime: '',
+      remoteAddress: localsocket.remoteAddress,
+      remotePort: localsocket.remotePort,
+      remoteSocket: localsocket.remoteSocket,
+      response: data.toString('base64')
+    });
+
     console.trace("Remote received: " + data)
     console.log("%s:%d - writing data to local",
       localsocket.remoteAddress,

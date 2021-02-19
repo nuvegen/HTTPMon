@@ -21,7 +21,8 @@
     "electron": "^11.2.1"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "lowdb": "^1.0.0"
   },
   "config": {
     "forge": {
