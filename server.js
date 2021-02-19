@@ -6,7 +6,7 @@ const app = express()
 var serverPort = 8080
 var serverHost = '::'
 
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');  
 
 app.get('/', (req, res) => {
     res.redirect('/views/monitor')

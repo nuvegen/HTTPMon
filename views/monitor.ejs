@@ -35,6 +35,7 @@
                     aria-label="Monitor (<%= monitor.name %>)">
                     <div class="d-flex w-100 justify-content-between align-items-center">
                         <h5 class="mb-1"><%= monitor.name %></h5>
+                        <small class="text-muted">Inaktive</small>
                         <span class="badge badge-dark">14</span>
                     </div>
                     <p class="mb-1">local: tcp://*:<%=monitor.localPort%></p>
@@ -42,26 +43,9 @@
                 </a>
                 <% }) %>
 
-                <a href="#" class="list-group-item list-group-item-action list-group-item-dark"
-                    aria-label="Monitor (127.0.0.1:8080)">
-                    <div class="d-flex w-100 justify-content-between align-items-center">
-                        <h5 class="mb-1">127.0.0.1:8080</h5>
-                        <small class="text-muted">Inaktive</small>
-                    </div>
-                    <p class="mb-1">src(HTTP): 9090</p>
-                    <small>http://www.google.com:8080</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action list-group-item-dark active"
-                    aria-label="Monitor (google.com)">
-                    <div class="d-flex w-100 justify-content-between align-items-center">
-                        <h5 class="mb-1">google.com</h5>
-                        <span class="badge badge-dark">1</span>
-                    </div>
-                    <p class="mb-1">src(HTTP): 9090</p>
-                    <small>http://www.google.com:8080</small>
-                </a>
 
-                <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
+
+                <a href="/views/monitor/new" class="list-group-item list-group-item-action list-group-item-dark">
                     <div class="d-flex w-100 justify-content-center align-items-center">
                         <button type="button" class="btn btn-secondary" aria-label="Add new monitor"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
